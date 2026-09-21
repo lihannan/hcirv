@@ -75,3 +75,7 @@ input file of `shannon_entropy.R`
 ### `ORFs_and_CpGs_data.tsv`
 input file of `plot_orfs_and_CpGs.R`
 
+
+### License
+MIT License
+
