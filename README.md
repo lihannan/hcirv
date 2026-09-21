@@ -39,7 +39,7 @@ Converts a multiple sequence alignment in FASTA format into a tab-delimited site
 Each row represents one alignment position; each column represents one sequence.
 Input: aligned FASTA file (all sequences same length).
 Output: `<input>.seq` (tab-separated, one position per line, nucleotides separated by tabs).
-Dependency: Python =3
+Dependency: Python ≥3.10.
 Usage: `python fasta_to_tsv_shannong.py <aligned.fasta>`
 
 
@@ -56,7 +56,7 @@ Usage: update `setwd()` path, then `Rscript shannon_entropy.R`
 Converts a multiple sequence alignment (FASTA) into a per-site summary table with base counts, mutation ratio, reference base, and mutant base(s) at each position.
 Input: aligned FASTA file (all sequences same length).
 Output: `<input>.info` — tab-delimited table with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base.
-Dependency: Python =3, pandas=1.5.3.
+Dependency: Python ≥3.10, pandas=1.5.3.
 Usage: `python alignment_to_site_table.py <aligned.fasta>`
 
 ### `annotate_mutation_type.py`
@@ -64,7 +64,7 @@ Annotates each mutation site as synonymous (silent, "black") or non-synonymous (
 Input: tab-delimited site table (from `alignment_to_site_table.py`) with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base. output file of `alignment_to_site_table.py`
 Output: `<input>.type` — same table with additional `type` column (`black` = synonymous, `red` = non-synonymous).
 Parameters: ORF coordinates hardcoded for subtype reference (orf1: 154–1134, orf2: 1380–2024).
-Dependency: Python =3 (standard library only).
+Dependency: Python ≥3.10 (standard library only).
 Usage: `python annotate_mutation_type.py <input.info>`
 Note: This script evaluates single-nucleotide mutations per codon. Continuous/successive mutations within the same codon require manual verification.
 
