@@ -54,15 +54,15 @@ Usage: update `setwd()` path, then `Rscript shannon_entropy.R`
 
 ### `alignment_to_site_table.py`
 Converts a multiple sequence alignment (FASTA) into a per-site summary table with base counts, mutation ratio, reference base, and mutant base(s) at each position.
-Input: aligned FASTA file (all sequences same length).
-Output: `<input>.info` — tab-delimited table with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base.
+Input: aligned FASTA file (all sequences same length).  #genotype A alignment.fasta, genotype B alignment.fasta
+Output: `<input>.info` — tab-delimited table with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base.  #genotype A alignment.info, genotype B alignment.info
 Dependency: Python ≥3.10, pandas=1.5.3.
 Usage: `python alignment_to_site_table.py <aligned.fasta>`
 
 ### `annotate_mutation_type.py`
 Annotates each mutation site as synonymous (silent, "black") or non-synonymous ("red") based on codon context within predicted ORFs.
-Input: tab-delimited site table (from `alignment_to_site_table.py`) with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base. output file of `alignment_to_site_table.py`
-Output: `<input>.type` — same table with additional `type` column (`black` = synonymous, `red` = non-synonymous).
+Input: tab-delimited site table (from `alignment_to_site_table.py`) with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base. output file of `alignment_to_site_table.py`  # #genotype A alignment.info, genotype B alignment.info
+Output: `<input>.type` — same table with additional `type` column (`black` = synonymous, `red` = non-synonymous).  # #genotype A alignment.mutate.tsv, genotype B alignment.tsv.
 Parameters: ORF coordinates hardcoded for subtype reference (orf1: 154–1134, orf2: 1380–2024).
 Dependency: Python ≥3.10 (standard library only).
 Usage: `python annotate_mutation_type.py <input.info>`
@@ -75,6 +75,11 @@ input file of `shannon_entropy.R`
 ### `ORFs_and_CpGs_data.tsv`
 input file of `plot_orfs_and_CpGs.R`
 
+### `genotype A alignment.fasta` and `genotype B alignment.fasta`
+input file of alignment_to_site_table.py
+
+### `genotype A alignment.mutate.tsv` and `genotype B alignment.mutate.tsv`
+output file of annotate_mutation_type.py. note: When multiple variant bases are present at the same genomic position, they are merged and output as a single row. If a non-synonymous substitution exists at that site, it is classified as non-synonymous; in such cases, manual inspection should be performed to check whether synonymous substitutions are also present. If all variant bases at the site are synonymous, it is classified as synonymous.
 
 ### License
 MIT License
