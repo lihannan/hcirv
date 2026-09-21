@@ -2,6 +2,12 @@
 hcirv analysis script
 stat_mutate_type.py is not suitable for continuous base mutations in coding region. If continuous mutations are required, manual verification is required.
 
+### `pairwise_identity.py`
+Computes pairwise sequence identity matrix between two sets of sequences using global alignment (Needleman-Wunsch, via Biopython pairwise2).
+Input: two FASTA files (target sequences and reference sequences).
+Output: CSV matrix (rows = data sequences, columns = target sequences, values = identity fraction).
+Dependency: Python ≥3.10, Biopython=1.78, pandas=1.5.3, numpy=1.19.1, seaborn=0.13.2.
+Usage: `python scripts/pairwise_identity.py <aim.fasta> <data.fasta>`
 
 
 ### `cpg_island.sh`
