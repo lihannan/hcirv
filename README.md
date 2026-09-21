@@ -35,3 +35,30 @@ Output: PDF file (`<input>.pdf`) with one panel per sequence.
 Dependency: R (≥4.0), base graphics only (no external packages required).
 Usage: `Rscript scripts/plot_orfs_and_CpGs.R <input.tsv>`
 
+
+### `fasta_to_tsv_shannong.py`
+Converts a multiple sequence alignment in FASTA format into a tab-delimited site-by-sequence table.
+Each row represents one alignment position; each column represents one sequence.
+Input: aligned FASTA file (all sequences same length).
+Output: `<input>.seq` (tab-separated, one position per line, nucleotides separated by tabs).
+Dependency: Python =3
+Usage: `python fasta_to_seq.py <aligned.fasta>`
+
+
+### `shannon_entropy.R`
+Computes per-site Shannon entropy from a multiple sequence alignment and generates a diversity profile plot.
+Input: tab-delimited file (`all.align.fasta.seq`) where each column is a sequence and each row is a site; values are A/T/G/C.
+Output: on-screen plot (PDF export can be enabled).
+Parameters: sliding window = 20 sites.
+Dependency: R (≥4.0), posterior (1.7.0).
+Usage: update `setwd()` path, then `Rscript scripts/shannon_entropy.R`
+
+
+### `all.align.fasta.seq`
+input file of `shannon_entropy.R`
+
+
+### `ORFs_and_CpGs_data.tsv`
+input file of `plot_orfs_and_CpGs.R`
+
+
