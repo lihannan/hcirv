@@ -1,7 +1,5 @@
-# hcirv
-hcirv analysis script
-stat_mutate_type.py is not suitable for continuous base mutations in coding region. If continuous mutations are required, manual verification is required.
-
+# Genomic tracking of human circovirus (HCirV)
+This repository contains analysis scripts, processing pipelines of 'Genomic tracking of human circovirus: global phylogeography and prevalence in specific patient populations'.
 
 ### `pairwise_identity.py`
 Computes pairwise sequence identity matrix between two sets of sequences using global alignment (Needleman-Wunsch, via Biopython pairwise2).
@@ -42,7 +40,7 @@ Each row represents one alignment position; each column represents one sequence.
 Input: aligned FASTA file (all sequences same length).
 Output: `<input>.seq` (tab-separated, one position per line, nucleotides separated by tabs).
 Dependency: Python =3
-Usage: `python fasta_to_seq.py <aligned.fasta>`
+Usage: `python fasta_to_tsv_shannong.py <aligned.fasta>`
 
 
 ### `shannon_entropy.R`
@@ -51,14 +49,29 @@ Input: tab-delimited file (`all.align.fasta.seq`) where each column is a sequenc
 Output: on-screen plot (PDF export can be enabled).
 Parameters: sliding window = 20 sites.
 Dependency: R (≥4.0), posterior (1.7.0).
-Usage: update `setwd()` path, then `Rscript scripts/shannon_entropy.R`
+Usage: update `setwd()` path, then `Rscript shannon_entropy.R`
+
+
+### `alignment_to_site_table.py`
+Converts a multiple sequence alignment (FASTA) into a per-site summary table with base counts, mutation ratio, reference base, and mutant base(s) at each position.
+Input: aligned FASTA file (all sequences same length).
+Output: `<input>.info` — tab-delimited table with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base.
+Dependency: Python =3, pandas=1.5.3.
+Usage: `python alignment_to_site_table.py <aligned.fasta>`
+
+### `annotate_mutation_type.py`
+Annotates each mutation site as synonymous (silent, "black") or non-synonymous ("red") based on codon context within predicted ORFs.
+Input: tab-delimited site table (from `alignment_to_site_table.py`) with columns: position, A, T, G, C, -, mutate_ratio, ref_base, mutate_base. output file of `alignment_to_site_table.py`
+Output: `<input>.type` — same table with additional `type` column (`black` = synonymous, `red` = non-synonymous).
+Parameters: ORF coordinates hardcoded for subtype reference (orf1: 154–1134, orf2: 1380–2024).
+Dependency: Python =3 (standard library only).
+Usage: `python annotate_mutation_type.py <input.info>`
+Note: This script evaluates single-nucleotide mutations per codon. Continuous/successive mutations within the same codon require manual verification.
 
 
 ### `all.align.fasta.seq`
 input file of `shannon_entropy.R`
 
-
 ### `ORFs_and_CpGs_data.tsv`
 input file of `plot_orfs_and_CpGs.R`
-
 
