@@ -1,7 +1,6 @@
 library("posterior")
 
-setwd("/Users/nan/Desktop/科研/liver/liver.human.dna/write paper/Figure/Figure 5/香农指数")
-data = read.table("all.align.fasta.seq",sep = "\t")
+data = read.table("all.align.fasta.seq",sep = "\t")	#the alignment of hcirv file
 
 step = 20
 column_names <- c("num", "shannong","average")
