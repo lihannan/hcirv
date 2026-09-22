@@ -69,6 +69,13 @@ Usage: `python annotate_mutation_type.py <input.info>`
 Note: This script evaluates single-nucleotide mutations per codon. Continuous/successive mutations within the same codon require manual verification.
 
 
+### `qPCR.20rep.lod95.R`
+Estimates probit LoD95 (95% limit of detection) for four HCirV subtypes (A, B, C, D) from two-fold dilution plasmid titration data using probit regression (log2 concentration vs detection probability, binomial GLM with probit link). Outputs a four-panel PDF figure with fitted probit curves, 95% confidence bands, and annotated LoD95 values with 95% CIs.
+Input data are hardcoded in the script header (concentrations: 50, 100, 200, 400, 800 copies/reaction; n = 20 replicates per concentration per subtype; positive counts for each subtype). Output: qPCR.20rep.lod95.pdf (four-panel probit plot, 2×2 grid, one panel per subtype).
+Dependency: R (≥4.0).
+Usage: `Rscript qPCR.20rep.lod95.R`
+
+
 ### `all.align.fasta.seq`
 input file of `shannon_entropy.R`
 
