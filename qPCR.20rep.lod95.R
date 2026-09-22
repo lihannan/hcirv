@@ -1,6 +1,3 @@
-#install.packages("MASS")
-library(MASS)
-
 conc <- c(800, 400, 200, 100, 50)
 n <- rep(20, 5)
 
